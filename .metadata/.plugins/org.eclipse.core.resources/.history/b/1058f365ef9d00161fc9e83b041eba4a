@@ -1,0 +1,242 @@
+package carParkingSystem;
+
+import java.util.Scanner;
+
+public class WestminsterCarParkManager implements CarParkManager {
+	// each element of this array represents a slot
+	Vehicle[] parkingSlots = new Vehicle[20];
+
+	// pointer to depict the assignable car park
+	int pointer = -1;
+
+	public static void main(String[] args) {
+
+	}
+
+	@Override
+	/**
+	 * Returns no of free slots
+	 */
+	public int freeSlots() {
+		int counter = 0;
+		for (Vehicle slot : parkingSlots) {
+			if (slot.getIdPlateNo().equals(null)) {
+				counter++;
+			}
+		}
+		return counter;
+	}
+
+	@Override
+	/**
+	 * Returns message for available free slots
+	 */
+	public String freeSlotsMessage() {
+		if (freeSlots() == 0) {
+			return "Sorry! There is no free space available";
+		} else {
+			return "There are " + freeSlots() + " free slots available";
+		}
+	}
+	
+	@Override
+	/**
+	 * 
+	 * Prompts for the vehicle related details before adding
+	 */
+	public Vehicle choseVehicle(){
+		Scanner sc = new Scanner(System.in);
+
+		// prompt for date and time details ------------------------------------
+
+		// date (DD MM YYYY) on a single line
+		System.out.print("Enter the Date (seperated by space [DD MM YYYY])  : ");
+
+		// date variables separated
+		int day = sc.nextInt(); // DD
+		int month = sc.nextInt(); // MM
+		int year = sc.nextInt(); // YYYY
+
+		// time
+		System.out.print("Enter the Time (seperated by space [HH MM] : ");
+
+		// time variables separated
+		int hours = sc.nextInt();
+		int minutes = sc.nextInt();
+
+		// prompt
+		System.out.println("Enter the type of vehicle");
+		System.out.print("([C]-Car [V]-Van [M]-Motorbike) : ");
+
+		// store lower case character of selection
+		char choice = Character.toLowerCase(sc.nextLine().charAt(0));
+
+		// prompt for vehicle details ------------------------------------------
+
+		// plate no
+		System.out.print("Enter the ID Plate No : ");
+		String idPlateNo = sc.nextLine();
+
+		// brand of vehicle
+		System.out.print("Enter the Brand of vehicle : ");
+		String brand = sc.nextLine();
+
+		switch (choice) {
+		case ('c'):
+			// car
+
+			// color
+			System.out.print("Enter the color of car : ");
+			String color = sc.nextLine();
+
+			// no of doors
+			System.out.print("Enter the number of doors of car : ");
+			int noOfDoors = sc.nextInt();
+
+			// return a car object
+			return (null);
+			;
+			break;
+		case ('v'):
+			// van
+			;
+			break;
+		case ('m'):
+			// motorbike
+			;
+			break;
+		default:
+			// invalid selection
+		}
+	}
+
+	@Override
+	/**
+	 * Adds vehicle to a slot if there are free slots
+	 */
+	public void addVehicle(Vehicle v) {
+		
+		if (freeSlots() > 0) {
+
+			// increase pointer
+			pointer++;
+
+			// add vehicle to the current pointer location
+			parkingSlots[pointer] = v;
+
+		}
+		// display free slots as message
+		freeSlotsMessage();
+
+	}
+
+	@Override
+	/**
+	 * Prints the list of currently parked vehicles
+	 */
+	public void listOfVehicles() {
+		int counter = 0;
+		for (Vehicle slot : parkingSlots) {
+			if (!(slot.getIdPlateNo().equals(null))) {
+				// all filled slot details should be returned
+				System.out.println("SLOT NO : " + (counter + 1));
+				System.out.println();
+				System.out.println("Plate No : " + slot.getIdPlateNo());
+				System.out.println("Entry Time : " + slot.getEntryDateTime());
+
+				counter++;
+			}
+		}
+	}
+
+	@Override
+	public Vehicle deleteVehicle(String idPlateNo) {
+		// to store the details before deleting
+		Vehicle tempVehicle = null;
+		boolean isFound = false;
+		for (Vehicle slot : parkingSlots) {
+			if (!isFound) {
+				if (slot.getIdPlateNo().equals(idPlateNo)) {
+					// a slot with the idPlateNo is found
+					isFound = true;
+
+					// copy the slot details to the temporary variable
+					tempVehicle = slot;
+
+					// delete the specific record
+					slot = null;
+				}
+			}
+		}
+
+		return tempVehicle;
+
+	}
+
+	@Override
+	public Vehicle removedVehicle(Vehicle v) {
+		/*
+		 * deleteVehicle() method's returned value is passed as argument
+		 */
+		return v;
+	}
+
+	@Override
+	public String removedVehicleType(Vehicle v) {
+		/*
+		 * removedVehicle() method's returned value is passed as argument
+		 */
+		return null;
+	}
+
+	@Override
+	public void displayParkedVehicles() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void orderChronologically(Vehicle[] vArr) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void percentageSummary() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public double percentage(Vehicle v) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Vehicle longestParkedVehicle() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vehicle lastParkedVehicle() {
+		// TODO Auto-generated method stub
+		return null;
+
+	}
+
+	@Override
+	public void vehiclesEntered(DateTime day) {
+		// Time and minutes are not concerned here
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public double charge(String idPlateNo, DateTime inDateTime, DateTime outDateTime) {
+		// TODO Auto-generated method stub
+		return 0;
+
+	}
+
+}

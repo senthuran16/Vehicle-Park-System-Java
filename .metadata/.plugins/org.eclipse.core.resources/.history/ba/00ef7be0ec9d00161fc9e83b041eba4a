@@ -1,0 +1,56 @@
+package carParkingSystem;
+
+public interface CarParkManager {
+	// return free slots
+	public int freeSlots();
+	
+	// return message of free slots available
+	public String freeSlotsMessage();
+	
+	// add a vehicle
+	public void addVehicle(Vehicle v);
+	
+	// show parked vehicle idPlateNo's
+	public void listOfVehicles();
+	
+	// delete a vehicle
+	public Vehicle deleteVehicle(String idPlateNo);
+	
+	// return vehicle instance when leaving
+	public Vehicle removedVehicle(Vehicle v);
+	
+	// return type of vehicle, leaving the park
+	public String removedVehicleType(Vehicle v);
+	
+	// print list of currently parked vehicle
+	public void displayParkedVehicles();
+	
+	// order the list chronologically
+	public void orderChronologically(Vehicle[] vArr);
+	
+	// statistics ------------
+	
+	// display percentage of all vehicles
+	public void percentageSummary();
+	
+	// return percentage of a specific vehicle
+	public double percentage(Vehicle v);
+	
+	// display vehicle parked for the longest time
+	public Vehicle longestParkedVehicle();
+	
+	// display the last parked vehicle
+	public Vehicle lastParkedVehicle();
+	
+	// display list of vehicles entered in on specific day
+	public void vehiclesEntered(DateTime day);
+	
+	// display charges
+	public double charge(String idPlateNo, DateTime inDateTime , DateTime outDateTime);
+
+	
+	
+	
+	
+	
+}	

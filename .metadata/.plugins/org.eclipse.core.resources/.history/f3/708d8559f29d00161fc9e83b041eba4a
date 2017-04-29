@@ -1,0 +1,26 @@
+package carParkingSystem;
+
+public class Motorbike extends Vehicle{
+	private int sizeOfEngine;
+
+	// constructor
+	public Motorbike(String idPlateNo, String brand, DateTime entryDateTime, int sizeOfEngine) {
+		super(idPlateNo, brand, entryDateTime);
+		this.sizeOfEngine = sizeOfEngine;
+	}
+
+	// methods
+	
+	public int getSizeOfEngine() {
+		return sizeOfEngine;
+	}
+
+	
+
+	public void setSizeOfEngine(int sizeOfEngine) {
+		this.sizeOfEngine = sizeOfEngine;
+	}
+	
+	
+
+}
